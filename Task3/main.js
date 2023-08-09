@@ -42,38 +42,73 @@ class Message{
   }
 }
 
-function startGame(){
+function startGame(callback){
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 rl.on('line', answer => {
-    if(answer === 0) {
+    if(answer == '0') {
     console.log('Game is over');
     rl.close(); 
   } else if(answer === '?') {
     console.log('Rules:');
     rl.close();  
-  } else if((answer === 'rock'|| answer === 1) && Key.moveGenerator() === 'scissors') {
-    console.log(`Computer move: ${Key.moveGenerator()}`);
+  } else if((answer === 'rock'|| answer === '1')  && Key.moveGenerator() === 'scissors') {
+    console.log('Your move: rock');
+    console.log('Computer move: scissors');
     console.log('You win!');
     rl.close();
-  } else if((answer === 'rock' || answer === 1) && Key.moveGenerator() === 'paper') {
-    console.log(`Computer move: ${Key.moveGenerator()}`);
+  } else if((answer === 'rock' || answer === '1') && Key.moveGenerator() === 'paper') {
+    console.log('Your move: rock');
+    console.log('Computer move: paper');
     console.log('You lose :(')
     rl.close();
-  } else if((answer === 'rock' || answer === 1) && Key.moveGenerator() === 'rock') {
-    console.log(`Computer move: ${Key.moveGenerator()}`);
+  } else if((answer === 'rock' || answer === '1') && Key.moveGenerator() === 'rock') {
+    console.log('Your move: rock');
+    console.log('Computer move: rock');
     console.log('Draw')
     rl.close();
+  } else if((answer === 'paper' || answer === '2') && Key.moveGenerator() === 'rock') {
+    console.log('Your move: paper');
+    console.log('Computer move: rock');
+    console.log('You win!')
+    rl.close();
+  } else if((answer === 'paper' || answer === '2') && Key.moveGenerator() === 'paper') {
+    console.log('Your move: paper');
+    console.log('Computer move: paper');
+    console.log('Draw')
+    rl.close();
+  } else if((answer === 'paper' || answer === '2') && Key.moveGenerator() === 'scissors') {
+    console.log('Your move: paper');
+    console.log('Computer move: scissors');
+    console.log('You lose :(')
+    rl.close();
+  } else if((answer === 'scissors' || answer === '3') && Key.moveGenerator() === 'scissors') {
+    console.log('Your move: scissors');
+    console.log('Computer move: scissors');
+    console.log('Draw')
+    rl.close();
+  } else if((answer === 'scissors' || answer === '3') && Key.moveGenerator() === 'paper') {
+    console.log('Your move: scissors');
+    console.log('Computer move: paper');
+    console.log('You win!')
+    rl.close();
+  } else if((answer === 'scissors' || answer === '3') && Key.moveGenerator() === 'rock') {
+    console.log('Your move: scissors');
+    console.log('Computer move: rock');
+    console.log('You lose :(')
+    rl.close();
   } else {
-    return 'write your move'
+    console.log ('Write your move');
   }
+
+    callback()
 })}
 
 
 Hmac.generateHMAC()
 Message.showMessage()
-startGame()
+startGame(Key.showKey)
 
