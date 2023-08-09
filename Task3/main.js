@@ -1,5 +1,4 @@
 const process = require('process');
-const moves = process.argv.slice(2);
 const readline = require('readline');
 const crypto = require("crypto")
 
@@ -43,7 +42,7 @@ class Message{
   }
 }
 
-async function f(){
+function startGame(){
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -76,5 +75,5 @@ rl.on('line', answer => {
 
 Hmac.generateHMAC()
 Message.showMessage()
-f().then(Key.showKey())
+startGame()
 
